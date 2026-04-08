@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "truth-seeker-env"
+version = "1.0.0"
+description = "Truth-Seeker's Sandbox — multi-turn agentic RAG RL environment"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "requests",
+    "gunicorn",
+    "qdrant-client",
+    "pydantic",
+    "starlette",
+    "chardet",
+    "openenv-core>=0.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.scripts]
+server = "server.app:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["server*", "dataset*", "tests*"]
+
+[tool.setuptools]
+py-modules = ["client", "models"]

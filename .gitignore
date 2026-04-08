@@ -1,0 +1,11 @@
+.env
+.venv
+.pytest_cache
+venv
+__pycache__
+env/
+env
+uv.lock
+*.zip
+*.docx
+Requirements/

@@ -1,0 +1,43 @@
+name: truth_seeker_env
+version: "1.0.0"
+description: >
+  Truth-Seeker's Sandbox — a multi-turn agentic RAG environment where an AI agent
+  must verify, synthesize, and answer questions by querying internal documentation
+  (via Pinecone vector search) and/or performing real web searches (via Serper.dev
+  Google Search API). Supports dual-mode web search: live API results in production,
+  keyword-overlap fallback for offline dev/test.
+  Three difficulty tiers test doc-only retrieval (easy), hybrid retrieval (medium),
+  and web-search-only reasoning (hard).
+hf_space_id: tarun8477/truth_seeker_env
+tasks:
+  - name: easy
+    description: >
+      Agent must find the answer using READ_DOC (Pinecone RAG) only.
+      The answer exists verbatim in the internal documentation.
+    grader_type: deterministic
+    score_range: [0.0, 1.0]
+
+  - name: medium
+    description: >
+      Agent must combine READ_DOC and WEB_SEARCH. Internal docs provide partial
+      information; the web search proxy provides the remaining facts.
+    grader_type: deterministic
+    score_range: [0.0, 1.0]
+
+  - name: hard
+    description: >
+      No internal documentation is available. Agent must iteratively use
+      WEB_SEARCH with targeted queries to discover the answer from scratch.
+    grader_type: deterministic
+    score_range: [0.0, 1.0]
+
+resource_requirements:
+  vcpu: 2
+  memory_gb: 8
+  inference_timeout_min: 20
+
+tags:
+  - openenv
+  - rag
+  - multi-turn
+  - agentic
