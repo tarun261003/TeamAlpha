@@ -184,7 +184,7 @@ What action will you take next? Respond with a JSON object."""
         )
 
         if result.done:
-            final_score = max(0.0, min(1.0, result.reward or 0.0))
+            final_score = max(0.01, min(0.99, result.reward or 0.0))
             print(
                 f"[END] success={str(final_score >= 0.5).lower()} "
                 f"steps={step_num} "

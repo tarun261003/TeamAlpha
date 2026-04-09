@@ -193,4 +193,4 @@ def _action_details(state) -> list:
 
 
 def _clamp(score: float) -> float:
-    return round(min(max(score, 0.0), 1.0), 4)
+    return round(min(max(score, 0.01), 0.99), 4)
